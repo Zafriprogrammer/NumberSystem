@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <form>
+                <label for="base">Select base</label>
+                <select id="base" class="base-selector">
+                    <option value="2">2 (Binary)</option>
+                    <option value="8">8 (Octal)</option>
+                    <option value="10" selected>10 (Decimal)</option>
+                    <option value="16">16 (Hexadecimal)</option>
+                </select>
+
+                <label for="firstNumber">First number</label>
+                <input type="text" id="firstNumber" placeholder="Enter first number">
+
+                <label for="operation">Operation</label>
+                <select id="operation">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+
+                <label for="secondNumber">Second number</label>
+                <input type="text" id="secondNumber" placeholder="Enter second number">
+
+                <button type="button" class="calculate" onclick="performCalculation()">= Calculate</button>
+                <button type="button" class="reset" onclick="resetForm()">x Reset</button>
+
+                <label for="result">Result number</label>
+                <input type="text" id="result" readonly>
+
+                <button type="button" class="copy" onclick="copyResult()">Copy</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
