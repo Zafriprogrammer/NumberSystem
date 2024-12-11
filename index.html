@@ -1,60 +1,93 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator with Base Conversion</title>
+    <title>Base Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="container">
-    <div class="calculator">
-        <form>
-            <div class="display">
-                <input type="text" id="display" name="display" placeholder="Enter number">
-            </div>
-            <div>
-                <input type="button" value="AC" onclick="clearDisplay()" class="operator">  
-                <input type="button" value="DE" onclick="deleteLastChar()" class="operator">
-                <input type="button" value="." onclick="appendToDisplay('.')" class="operator">
-                <input type="button" value="/" onclick="appendToDisplay('/')" class="operator">
-            </div>
-            <div>
-                <input type="button" value="7" onclick="appendToDisplay('7')">
-                <input type="button" value="8" onclick="appendToDisplay('8')">
-                <input type="button" value="9" onclick="appendToDisplay('9')">
-                <input type="button" value="*" onclick="appendToDisplay('*')" class="operator">
-            </div>
-            <div>
-                <input type="button" value="4" onclick="appendToDisplay('4')">
-                <input type="button" value="5" onclick="appendToDisplay('5')">
-                <input type="button" value="6" onclick="appendToDisplay('6')">
-                <input type="button" value="-" onclick="appendToDisplay('-')" class="operator">
-            </div>
-            <div>
-                <input type="button" value="1" onclick="appendToDisplay('1')">
-                <input type="button" value="2" onclick="appendToDisplay('2')">
-                <input type="button" value="3" onclick="appendToDisplay('3')"> 
-                <input type="button" value="+" onclick="appendToDisplay('+')" class="operator">
-            </div>
-            <div>
-                <input type="button" value="00" onclick="appendToDisplay('00')">
-                <input type="button" value="0" onclick="appendToDisplay('0')">
-                <input type="button" value="=" onclick="evaluateExpression()" class="equal operator">
-            </div>
-            <div>
-                <label>Convert to Base:</label>
-                <select id="baseSelection" class="base-selector" onchange="convertBase()">
-                    <option value="2">Binary (2)</option>
-                    <option value="8">Octal (8)</option>
-                    <option value="10" selected>Decimal (10)</option>
-                    <option value="16">Hexadecimal (16)</option>
+    <div class="container">
+        <h1>Base Calculator</h1>
+        <div class="tab">
+            <button class="tablink active" onclick="openTab(event, 'calculator')">Base calculator</button>
+            <button class="tablink" onclick="openTab(event, 'converter')">Base converter</button>
+        </div>
+        
+        <div id="calculator" class="tab-content active">
+            <h2>Base calculations with 2 numbers</h2>
+            <div class="form-group">
+                <label for="base">Select base</label>
+                <select id="base">
+                    <option value="10">10 (decimal)</option>
+                    <option value="2">2 (binary)</option>
+                    <option value="16">16 (hex)</option>
+                    <option value="8">8 (octal)</option>
                 </select>
-            </div>            
-        </form>
+            </div>
+            <div class="form-group">
+                <label for="first-number">First number</label>
+                <input type="text" id="first-number">
+            </div>
+            <div class="form-group">
+                <label for="operation">Operation</label>
+                <select id="operation">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="second-number">Second number</label>
+                <input type="text" id="second-number">
+            </div>
+            <button onclick="calculate()">= Calculate</button>
+            <button class="reset" onclick="resetCalculator()">Reset</button>
+            <div class="form-group">
+                <label for="result">Result number</label>
+                <textarea id="result" readonly></textarea>
+            </div>
+        </div>
+        
+        <div id="converter" class="tab-content">
+            <h2>Convert number from any base to any base:</h2>
+            <div class="form-group">
+                <label for="input-number">Enter number</label>
+                <input type="text" id="input-number">
+            </div>
+            <div class="form-group">
+                <label for="from-base">From Base</label>
+                <select id="from-base">
+                    <option value="10">10 (decimal)</option>
+                    <option value="2">2 (binary)</option>
+                    <option value="16">16 (hex)</option>
+                    <option value="8">8 (octal)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="to-base">To base</label>
+                <select id="to-base">
+                    <option value="10">10 (decimal)</option>
+                    <option value="2">2 (binary)</option>
+                    <option value="16">16 (hex)</option>
+                    <option value="8">8 (octal)</option>
+                </select>
+            </div>
+            <button onclick="convert()">= Convert</button>
+            <button class="reset" onclick="resetConverter()">Reset</button>
+            <button class="swap" onclick="swapBases()">Swap</button>
+            <div class="form-group">
+                <label for="converted-result">Result number</label>
+                <textarea id="converted-result" readonly></textarea>
+            </div>
+        </div>
     </div>
-</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
 <script src="script.js"></script>
 </body>
