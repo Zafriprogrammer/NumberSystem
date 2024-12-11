@@ -6,9 +6,9 @@ function performCalculation() {
     const resultField = document.getElementById("result");
 
     try {
-        // Parse the input values as floats
-        const num1 = parseFloat(firstNumber);
-        const num2 = parseFloat(secondNumber);
+        // Parse the input values based on the selected base
+        const num1 = parseInt(firstNumber, base);
+        const num2 = parseInt(secondNumber, base);
 
         if (isNaN(num1) || isNaN(num2)) {
             alert("Invalid number input.");
@@ -31,20 +31,15 @@ function performCalculation() {
                     alert("Division by zero is not allowed.");
                     return;
                 }
-                result = num1 / num2;
+                result = Math.floor(num1 / num2); // Floor division for integer result
                 break;
             default:
                 alert("Invalid operation.");
                 return;
         }
 
-        // Determine the maximum number of decimal places from the inputs
-        const decimalPlaces1 = getDecimalPlaces(firstNumber);
-        const decimalPlaces2 = getDecimalPlaces(secondNumber);
-        const maxDecimalPlaces = Math.max(decimalPlaces1, decimalPlaces2);
-
-        // Display the result with the appropriate number of decimal places
-        resultField.value = result.toFixed(maxDecimalPlaces);
+        // Convert the result back to the selected base and display it
+        resultField.value = result.toString(base).toUpperCase();
     } catch (error) {
         alert("Error in calculation.");
     }
@@ -63,10 +58,3 @@ function copyResult() {
     alert("Result copied!");
 }
 
-// Helper function to get the number of decimal places in a number string
-function getDecimalPlaces(numberStr) {
-    if (numberStr.includes('.')) {
-        return numberStr.split('.')[1].length;
-    }
-    return 0;
-}
